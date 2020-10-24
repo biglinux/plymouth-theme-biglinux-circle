@@ -10,10 +10,31 @@ Window.SetBackgroundTopColor(0.00, 0.00, 0.00);
 Window.SetBackgroundBottomColor(0.00, 0.00, 0.00);
 
 
+# ====================[ Scale Desktop begin ]==================== #
+
+bg_image = Image("background.png");
+window_max_width = Window.GetX() * 2 + Window.GetWidth();
+window_max_height = Window.GetY() * 2 + Window.GetHeight();
+screen_ratio = window_max_width / window_max_height;
+bg_image_ratio = bg_image.GetWidth() / bg_image.GetHeight();
+if (screen_ratio > bg_image_ratio)
+    bg_scale_factor = window_max_width / bg_image.GetWidth();
+else
+    bg_scale_factor = window_max_height / bg_image.GetHeight();
+scaled_bg_image = bg_image.Scale(bg_image.GetWidth() * bg_scale_factor,
+                                 bg_image.GetHeight() * bg_scale_factor);
+bg_sprite = Sprite(scaled_bg_image);
+bg_sprite.SetPosition(Window.GetX() + Window.GetWidth() / 2 - scaled_bg_image.GetWidth() / 2,
+                      Window.GetY() + Window.GetHeight() / 2 - scaled_bg_image.GetHeight() / 2,
+                      -10000);
+
+# ====================[ Scale Desktop end ]==================== #
+
+
 #---------- Animated circle variables ---------
 anim.imagecount = 64;
-anim.target_width =  0.6* 0.46 * Window.GetWidth();
-anim.target_height =  0.6* 0.46 * Window.GetWidth();
+anim.target_width =  0.130 * Window.GetWidth();
+anim.target_height =  0.130 * Window.GetWidth();
 
 #----------- Rotate circle ----------------
 fun RotatedImage1 (index){
@@ -31,7 +52,7 @@ anim.sprite = SpriteNew();
 anim.sprite.SetImage(RotatedImage1 (0));
 
 SpriteSetX (anim.sprite, SpriteWindowGetWidth()  / 2 - ImageGetWidth(RotatedImage1(0))  / 2);
-SpriteSetY (anim.sprite, SpriteWindowGetHeight() / 4);
+SpriteSetY (anim.sprite, SpriteWindowGetHeight() / 4 + ImageGetWidth(RotatedImage1(0))  / 2);
 
 #anim.sprite.SetX( Window.GetWidth() / 2 );
 #anim.sprite.SetX((Window.GetX() + Window.GetWidth() - RotatedImage1(0).GetWidth()) / 2);
@@ -43,8 +64,8 @@ anim.index = 0;
 
 #---------- Animated logo variables ------------
 animlogo.imagecount = 1;
-animlogo.target_width =  0.6* 0.46 * Window.GetWidth();
-animlogo.target_height =  0.6* 0.46 * Window.GetWidth();
+animlogo.target_width =  0.130 * Window.GetWidth();
+animlogo.target_height =  0.130 * Window.GetWidth();
 
 #----------- Rotate logo ----------------
 fun RotatedImage2 (index){
@@ -62,7 +83,7 @@ animlogo.sprite = SpriteNew();
 animlogo.sprite.SetImage(RotatedImage2 (0));
 
 SpriteSetX (animlogo.sprite, SpriteWindowGetWidth()  / 2 - ImageGetWidth( RotatedImage2 (0) )  / 2);
-SpriteSetY (animlogo.sprite, SpriteWindowGetHeight() / 4);
+SpriteSetY (animlogo.sprite, SpriteWindowGetHeight() / 4 + ImageGetWidth(RotatedImage2(0))  / 2);
 
 #animlogo.sprite.SetX( Window.GetWidth() / 2 + 15 );
 #animlogo.sprite.SetX((Window.GetX() + Window.GetWidth() - RotatedImage2(0).GetWidth()) / 2);
@@ -232,4 +253,3 @@ fun quit_callback ()
 }
 
 Plymouth.SetQuitFunction(quit_callback);
-

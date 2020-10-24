@@ -6,7 +6,6 @@ set -e
 case "$1" in
   configure)
     update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/biglinux-logo-circle/biglinux-logo-circle.plymouth  100
-    sed -i 's|^ *\bTheme\b *=.*|Theme=biglinux-logo-circle|' /etc/plymouth/plymouthd.conf
     update-initramfs -u
 ;;
 

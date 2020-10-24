@@ -1,11 +1,11 @@
 Package: plymouth-theme-biglinux-circle
-Version: 1.0.0-1big9
+Version: 1.0.1-1big1
 Depends: plymouth
 Architecture: all
 Maintainer: Bruno Goncalves <www.biglinux.com.br>
 Section: admin
 Priority: optional
-Installed-Size:324
+Installed-Size:1492
 Description: Plymouth theme for BigLinux made by Tales
 
 

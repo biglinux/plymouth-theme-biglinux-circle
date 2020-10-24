@@ -1,6 +1,6 @@
 [Plymouth Theme]
-Name=BigLinux-logo
-Description=BigLinux-logo plugin. 
+Name=Big-Linux-Circle
+Description=Tema do Plymouth para o Big Linux
 ModuleName=script
 
 [script]
